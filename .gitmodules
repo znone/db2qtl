@@ -1,0 +1,18 @@
+[submodule "third_party/leech"]
+	path = third_party/leech
+	url = https://github.com/znone/leech.git
+[submodule "third_party/qtl"]
+	path = third_party/qtl
+	url = https://github.com/znone/qtl.git
+[submodule "third_party/yaml-cpp"]
+	path = third_party/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp.git
+[submodule "third_party/inja"]
+	path = third_party/inja
+	url = https://github.com/pantor/inja.git
+[submodule "third_party/nlohmann"]
+	path = third_party/nlohmann
+	url = https://github.com/nlohmann/json.git
+[submodule "third_party/fmt"]
+	path = third_party/fmt
+	url = https://github.com/fmtlib/fmt.git

@@ -1,0 +1,33 @@
+connection : 
+    type : mysql
+    host : localhost
+    port : 3306
+    user : root
+    password : "123456"
+    database : test
+filename : test_mysql
+namespace: test
+generate_pool: true
+all_tables: true
+query_list: 
+ -  query: "select * from test where id=?"
+    classname: sss
+    params:
+        id : uint32_t
+    fields: 
+        id : uint32_t
+        name : array
+    functions:
+        for_each : true
+        get : false
+        insert : false
+        update : false
+        erase : false
+ -  table: test
+    classname: test
+    functions:
+        for_each : true
+        get : true
+        insert : true
+        update : true
+        erase : true

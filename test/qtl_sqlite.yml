@@ -1,0 +1,21 @@
+connection : 
+    type : sqlite
+    filename : ./test.db
+    database: test
+filename : test_sqlite
+namespace: test2
+generate_pool: true
+all_tables: true
+query_list: 
+ -  query: "select * from test where id=?"
+    classname: mytest
+    params:
+        id : int
+ -  table: test
+    classname: test
+    functions:
+        for_each : true
+        get : true
+        insert : true
+        update : true
+        erase : true
