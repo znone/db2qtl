@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
-  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="UserMacros">
+    <MYSQL_HOME>C:\MySQL</MYSQL_HOME>
+    <PG_HOME>D:\PostgreSQL\10</PG_HOME>
+    <BOOST_HOME>D:\open_source\boost_1_70_0</BOOST_HOME>
+  </PropertyGroup>
   <PropertyGroup>
-    <IncludePath>$(SolutionDir)..\third_party\qtl\include;$(SolutionDir)..\third_party\leech\include;$(SolutionDir)..\third_party\nlohmann\include;$(SolutionDir)..\third_party\inja\include;$(SolutionDir)..\third_party\yaml-cpp\include;$(SolutionDir)..\third_party\fmt\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\third_party\qtl\include;$(SolutionDir)..\third_party\leech\include;$(SolutionDir)..\third_party\nlohmann\include;$(SolutionDir)..\third_party\inja\include;$(SolutionDir)..\third_party\yaml-cpp\include;$(SolutionDir)..\third_party\fmt\include;$(SolutionDir)..\third_party\sqlite;$(MYSQL_HOME)/include;$(PG_HOME)/include;$(PG_HOME)/include/server;$(PG_HOME)/include/server/port/win32;$(BOOST_HOME);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\third_party\yaml-cpp\build\$(Configuration);$(SolutionDir)..\third_party\fmt\build\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup />
-  <ItemGroup />
+  <ItemGroup>
+    <BuildMacro Include="MYSQL_HOME">
+      <Value>$(MYSQL_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PG_HOME">
+      <Value>$(PG_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOST_HOME">
+      <Value>$(BOOST_HOME)</Value>
+    </BuildMacro>
+  </ItemGroup>
 </Project>

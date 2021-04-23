@@ -3,6 +3,7 @@
 #include "qtlgen.h"
 #include "mysqlconfig.h"
 #include "sqliteconfig.h"
+#include "postgresconfig.h"
 #include <leech/model.hpp>
 #include <leech/json.hpp>
 #include <inja/inja.hpp>
@@ -21,6 +22,9 @@ STRUCT_MODEL(qtlfield, name, type, primary, length, is_carray, auto_increment)
 STRUCT_MODEL(qtlconfig, connection, filename, namespace, generate_pool, query_list)
 STRUCT_MODEL_INHERIT(mysql_connection, (connection_config), host, port, user, password)
 STRUCT_MODEL_INHERIT(sqlite_connection, (connection_config), filename)
+STRUCT_MODEL_INHERIT(postgres_connection, (connection_config), host, port, user, password, schema, classes)
+STRUCT_MODEL(pgclass, id, name, fields)
+STRUCT_MODEL(pgfield, name, type)
 
 namespace leech
 {
@@ -42,6 +46,10 @@ namespace nlohmann {
 					j = move(leech::put(leech::json::document(), dynamic_cast<sqlite_connection&>(*config)).root());
 					j["type"] = "sqlite";
 				}
+				else if (dynamic_cast<postgres_connection*>(config.get())) {
+					j = move(leech::put(leech::json::document(), dynamic_cast<postgres_connection&>(*config)).root());
+					j["type"] = "postgres";
+				}
 			}
 		}
 	};
@@ -59,13 +67,6 @@ namespace nlohmann {
 	};
 
 	template <>
-	struct adl_serializer<qtlfield> {
-		static void to_json(json& j, const qtlfield& field) {
-			j = move(leech::put(leech::json::document(), field).root());
-		}
-	};
-
-	template <>
 	struct adl_serializer<params_type::value_type> {
 		static void to_json(json& j, const params_type::value_type& param) {
 			j["name"] = param.first;
@@ -73,6 +74,10 @@ namespace nlohmann {
 		}
 	};
 }
+
+STRUCT_TO_JSON(qtlfield)
+STRUCT_TO_JSON(pgclass)
+STRUCT_TO_JSON(pgfield)
 
 void generate(const qtlconfig& config, const std::string& template_path, const std::string& output_path)
 {

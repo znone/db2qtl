@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "db2qtl", "db2qtl\db2qtl.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qtlgen", "qtlgen\qtlgen.vcxproj", "{2EBAC6C7-3F1C-4810-8067-56F1B2766917}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite", "sqlite\sqlite.vcxproj", "{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -31,6 +33,14 @@ Global
 		{2EBAC6C7-3F1C-4810-8067-56F1B2766917}.Release|Win32.Build.0 = Release|Win32
 		{2EBAC6C7-3F1C-4810-8067-56F1B2766917}.Release|x64.ActiveCfg = Release|x64
 		{2EBAC6C7-3F1C-4810-8067-56F1B2766917}.Release|x64.Build.0 = Release|x64
+		{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}.Debug|Win32.Build.0 = Debug|Win32
+		{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}.Debug|x64.ActiveCfg = Debug|x64
+		{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}.Debug|x64.Build.0 = Debug|x64
+		{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}.Release|Win32.ActiveCfg = Release|Win32
+		{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}.Release|Win32.Build.0 = Release|Win32
+		{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}.Release|x64.ActiveCfg = Release|x64
+		{C4A98F2A-7549-4BA9-99F0-7E9DA07228D9}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

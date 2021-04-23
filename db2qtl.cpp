@@ -1,7 +1,7 @@
 
 #include "stdafx.h"
 #include "qtlconfig.h"
-#include "qtlgen.h"
+#include "generate.h"
 #include <iostream>
 #include <boost/program_options.hpp>
 #include <boost/filesystem.hpp>

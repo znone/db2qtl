@@ -1,0 +1,13 @@
+connection : 
+    type : postgres
+    host : localhost
+    port : 5432
+    user : postgres
+    password : "111111"
+    database : test
+    schema: public
+filename : test_postgres
+namespace: test
+generate_pool: true
+all_tables: true
+query_list: 

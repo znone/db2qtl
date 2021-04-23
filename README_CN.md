@@ -3,26 +3,43 @@ db2qtl用于从数据库结构生成QTL代码，目前支持MySQL和SQLite。
 
 ## 构建
 
-db2qtl依赖以下库：
+db2qtl依赖以下库，需要单独下载和编译：
 - boost >=1.70
+boost仅依赖 program_options、filesystem、preprocessor这几个子库。
+
+以下数据库的客户端，需要单独下载、编译或安装：
 - MySQL Connector/C（libmysqlclient）
+- libpg
 - SQLite
+
+以下库已经添加为本仓库的子模块，可以在克隆时自动拉取：
 - QTL
 - leech
 - nlohmann/json
-- YAML-CPP
 - libfmt
+- YAML-CPP
 - inja
 
-发布在github上的库已经做为子模块添加到仓库中，运行以下命令就可以拉取到本地。其余的库需要到官方网站下载。
-boost仅依赖 program_options、filesystem、preprocessor这几个子库。
+libfmt和YAML-CPP需要编译和安装。
+
 ```
 git submodule init
 git submodule update
 ```
 
-获取以上库后，就可以开始构建db2qtl。编译db2qtl需要支持C++14的编译器，例如 GCC 5.4或 Visual Studio 2015。Linux下如果所有需要的库都安装在/usr/local下，那么直接运行make就可以完成构建。Windows下通过vs目录下的Visual Studio解决方案来构建。可能需要先在解决方案中设置好所需要的库的路径。
+准备好以上的库后，就可以开始构建db2qtl。编译db2qtl需要支持C++14的编译器，例如 GCC 5.4或 Visual Studio 2015。
 
+### Visual Studio
+
+把下载的sqlite源码解压缩到third_party\sqlite目录。
+用Visual Studio 打开vs\db2qtl.sln，在属性管理器中修改属性db2qtl中定义的宏：
+- MYSQL_HOME是MySQL的安装目录
+- PG_HOME是PostgreSQL安装目录
+- BOOST_HOME是boost库所在的目录
+
+### Linux
+设置环境变量BOOST_HOME为boost库所在的目录。
+直接运行make就可以完成构建。
 
 ## 运行
 

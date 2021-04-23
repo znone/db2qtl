@@ -2,6 +2,7 @@
 #include "qtlconfig.h"
 #include "mysqlconfig.h"
 #include "sqliteconfig.h"
+#include "postgresconfig.h"
 
 namespace leech
 {
@@ -26,6 +27,7 @@ STRUCT_MODEL(qtlfunctions, for_each, get, insert, update, erase)
 STRUCT_MODEL(qtlconfig, connection, filename, namespace, all_tables, generate_pool, query_list)
 STRUCT_MODEL_INHERIT(mysql_connection, (connection_config), host, port, user, password)
 STRUCT_MODEL_INHERIT(sqlite_connection, (connection_config), filename)
+STRUCT_MODEL_INHERIT(postgres_connection, (connection_config), host, port, user, password, schema)
 
 using namespace std;
 
@@ -56,6 +58,15 @@ void get(const Document& ar, const typename Document::element_type& element, std
 		v.reset(connection);
 		create_query = [connection = v.get()]() {
 			return new sqlite_stmt(dynamic_cast<sqlite_connection&>(*connection));
+		};
+	}
+	else if (type == "postgres")
+	{
+		postgres_connection* connection = new postgres_connection;
+		leech::get(leech::yaml::document(element), *connection);
+		v.reset(connection);
+		create_query = [connection = v.get()]() {
+			return new postgres_stmt(dynamic_cast<postgres_connection&>(*connection));
 		};
 	}
 }
@@ -152,6 +163,7 @@ void qtlconfig::load(const char* filename)
 {
 	STRUCT_MODEL_SET_OPTIONAL(qtlconfig, all_tables);
 	STRUCT_MODEL_SET_OPTIONAL(qtlconfig, generate_pool);
+	STRUCT_MODEL_SET_OPTIONAL(qtlconfig, query_list);
 	STRUCT_MODEL_SET_OPTIONAL(qtlstmt, params);
 	STRUCT_MODEL_SET_OPTIONAL(qtlstmt, fields);
 	STRUCT_MODEL_SET_OPTIONAL(qtlfunctions, for_each);
